@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-15" ?>
+<root>
+<titulo>{{titulo}}</titulo>
+<municipios>
+	{% for municipio in municipios %}
+		<Municipio>
+		    <nombre>{{municipio.name}}</nombre>
+        <temperatura>
+          <min>{{municipio.temp_min}}</min>
+          <max>{{municipio.temp_max}}</max>
+        </temperatura>
+        <prob_lluvia>{{municipio.prob_lluvia}}</prob_lluvia>
+        <localizacion>
+          <altitud>{{municipio.altitud}}</altitud>
+          <longitud>{{municipio.longitud}}</longitud>
+          <latitud>{{municipio.latitud}}</latitud>
+        </localizacion>
+        <descripcion>{{municipio.descripcion}}</descripcion>
+        <num_coments>{{municipio.num_comentarios}}</num_coments>
+        <enlaces>
+          <local>/municipios/{{municipio.p_id}}</local>
+          <xml_AEMET>{{municipio.url_xml}}</xml_AEMET>
+          <html_AEMET>{{municipio.url.html}}</html_AEMET>
+        </enlaces>
+    </Municipio>
+	{% endfor %}
+</municipios>
+</root>

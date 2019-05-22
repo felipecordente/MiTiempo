@@ -1,0 +1,326 @@
+body {
+  background-color:{{color_fondo|default:"lightblue"}};
+}
+
+header {
+  height:200px;
+}
+
+a {
+  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  color: {{color_letra|default:"#1d7ffd"}};
+  text-decoration: none;
+}
+
+p {
+  font-family: verdana;
+  font-size: {{size|default:"15"}}px;
+  text-align: center;
+}
+
+#imagen_banner {
+  display: block;
+  position: relative;
+}
+
+#imagen_banner img{
+  -webkit-border-radius: 10px 100px 0px 100px;
+}
+
+#texto_banner {
+  display: block;
+  position: relative;
+  bottom: 330px;
+  left:  50px;
+  font: italic bold Georgia, serif;
+  width: 400px;
+}
+
+#loggin {
+  display: block;
+  position: relative;
+  left: 910px;
+  margin-right: 20px;
+  bottom: 200px;
+  width: 400px;
+  height:150px;
+  background-color: black;
+  color:white;
+  border-radius: 23px 23px 23px 23px;
+  -moz-border-radius: 23px 23px 23px 23px;
+  -webkit-border-radius: 23px 23px 23px 23px;
+  border: 1px solid #00f38c;
+}
+
+#pie_pagina {
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #00120a;
+  background:#50a4e5;
+  text-align: center;
+}
+
+ul.horizontal{
+  margin:0px;
+  padding:5px;
+  background:#50a4e5;
+  height:23px;
+}
+
+ul.horizontal li{
+  display:block;
+  float:left;
+  padding:0 10px;
+  border-left: 10px solid #005692;
+  border-right: 10px solid #005692;
+  background-color: black;
+  font-size: 18px;
+  border-radius: 23px 23px 23px 23px;
+  -moz-border-radius: 23px 23px 23px 23px;
+  -webkit-border-radius: 23px 23px 23px 23px;
+}
+
+ul.horizontal li a:hover {
+    -moz-transform:rotate(-5deg);
+    -moz-box-shadow:10px 10px 20px #000000;
+    -webkit-transform:rotate(-5deg);
+    -webkit-box-shadow:10px 10px 20px #000000;
+    transform:rotate(4deg); box-shadow:10px 10px 20px #000000;
+    margin-left: 10px;
+}
+
+#texto_banner a:hover{
+  -moz-transform:rotate(-5deg);
+  -moz-box-shadow:10px 10px 20px #000000;
+  -webkit-transform:rotate(-5deg);
+  -webkit-box-shadow:10px 10px 20px #000000;
+  transform:rotate(4deg); box-shadow:10px 10px 20px #000000;
+  margin-left: 10px;
+  border-radius: 50px 50px 50px 50px;
+  -moz-border-radius: 50px 50px 50px 50px;
+  -webkit-border-radius: 50px 50px 50px 50px;
+  padding: 5px;
+}
+
+#contenido {
+  font-family: sans-serif;
+  font-size: 15px;
+  color: #00120a;
+  background:#50a4e5;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+#info{
+  text-align: center;
+  color: #00120a;
+}
+
+#lista h2{
+  font-size: 30px;
+  text-align: center;
+}
+
+#lista ul{
+  background: #3399ff;
+  list-style:none;
+  border-radius: 23px 23px 23px 23px;
+  -moz-border-radius: 23px 23px 23px 23px;
+  -webkit-border-radius: 23px 23px 23px 23px;
+  border: 2px solid black;
+}
+
+#lista ul li{
+  font-family:Georgia,serif,Times;
+  font-size:20px;
+}
+
+#lista ul li a{
+  display:block;
+  width:300px;
+  height:28px;
+  background-color:#333;
+  border-left:5px solid #222;
+  border-right:5px solid #222;
+  padding-left:10px;
+  text-decoration:none;
+  color:#bfe1f1;
+}
+
+#lista ul li a:hover {
+    -moz-transform:rotate(-5deg);
+    -moz-box-shadow:10px 10px 20px #000000;
+    -webkit-transform:rotate(-5deg);
+    -webkit-box-shadow:10px 10px 20px #000000;
+    transform:rotate(4deg); box-shadow:10px 10px 20px #000000;
+    margin-left: 10px;
+}
+
+#content_usuario #municipio{
+  background: #3399ff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+#content_usuario p{
+  text-align: left;
+}
+
+#comentarios {
+  background:#50a4e5;
+}
+
+#comentarios h2 {
+  font-size: 15px;
+}
+
+#municipios{
+  padding-left: 20px;
+}
+
+#municipios #municipio li{
+  padding: 5px;
+  font-size:15px;
+}
+
+#filtro_temperatura {
+  padding: 5px;
+  font-size:15px;
+  background: #3399ff;
+  width: 30%;
+  margin: 0 auto;
+  border-radius: 23px 23px 23px 23px;
+  -moz-border-radius: 23px 23px 23px 23px;
+  -webkit-border-radius: 23px 23px 23px 23px;
+  border: 2px solid black;
+}
+
+#municipios #municipio {
+  background: #3399ff;
+  margin:10px;
+}
+
+#comentarios p{
+  text-align: left;
+  background: #3399ff;
+  padding: 20px;
+}
+
+#acceso_municipio {
+  display:block;
+  float:left;
+  border-left: 10px solid #005692;
+  border-right: 10px solid #005692;
+  background-color: black;
+  font-size: 14px;
+  padding: 5px;
+}
+
+#acceso_municipio a:hover{
+  -moz-transform:rotate(-5deg);
+  -moz-box-shadow:10px 10px 20px #000000;
+  -webkit-transform:rotate(-5deg);
+  -webkit-box-shadow:10px 10px 20px #000000;
+  transform:rotate(4deg); box-shadow:10px 10px 20px #000000;
+  margin-left: 10px;
+}
+
+
+#filtro{
+    margin-top: 10px;
+
+}
+
+.content-box #filtro{
+  width: 50%;
+  font: left;
+  background:  #0077ef;
+  padding: 20px;
+  border-radius: 78px 78px 78px 78px;
+  -moz-border-radius: 78px 78px 78px 78px;
+  -webkit-border-radius: 78px 78px 78px 78px;
+  border: 1px solid black;
+}
+
+.content-box #municipios{
+  padding: 20px;
+}
+
+.content-box #municipio{
+  margin: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left:10px;
+  width: 50%;
+  border-radius: 23px 23px 23px 23px;
+  -moz-border-radius: 23px 23px 23px 23px;
+  -webkit-border-radius: 23px 23px 23px 23px;
+  border: 2px solid black;
+}
+
+#lista_users h2{
+  margin: 2em 0 0 0;
+  margin-top: 2em;
+  color: #2e484c;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 1.8em;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-align: center;
+  background: white;
+  border-radius: 0px 35px 0px 35px;
+  -moz-border-radius: 0px 35px 0px 35px;
+  -webkit-border-radius: 0px 35px 0px 35px;
+  border: 2px solid #5878ca;
+}
+
+#lista_users{
+  float: right;
+  background: #12e1c8;
+  margin: 30px;
+  padding:20px;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 35px 0px 35px 0px;
+  -moz-border-radius: 35px 0px 35px 0px;
+  -webkit-border-radius: 35px 0px 35px 0px;
+  border: 2px solid #5878ca;
+}
+
+#lista_users ul li a{
+  display:block;
+  width:300px;
+  height:28px;
+  background-color:#333;
+  border-left:5px solid #222;
+  border-right:5px solid #222;
+  padding-left:10px;
+  text-decoration:none;
+  color:#bfe1f1;
+  padding: 30px;
+  padding-top:10px;
+}
+
+#lista_users ul li a:hover {
+    -moz-transform:rotate(-5deg);
+    -moz-box-shadow:10px 10px 20px #000000;
+    -webkit-transform:rotate(-5deg);
+    -webkit-box-shadow:10px 10px 20px #000000;
+    transform:rotate(4deg); box-shadow:10px 10px 20px #000000;
+    margin-left: 10px;
+}
+
+#xml{
+  background: #c66100;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 23px 23px 23px 23px;
+  -moz-border-radius: 23px 23px 23px 23px;
+  -webkit-border-radius: 23px 23px 23px 23px;
+  border: 2px solid black;
+  margin-left: 5%
+}

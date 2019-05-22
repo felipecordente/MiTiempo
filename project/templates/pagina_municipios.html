@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+        <div id = xml>
+          <a href="/municipios?format=xml" target="_blank">
+            Obtener XML
+          </a>
+        </div>
+        <div id = 'filtro_temperatura'>
+          <form action="/municipios" method="post">{% csrf_token %}
+            <p>Temperatura máxima:
+            <select name="temperatura">
+              {% for t in rango_temperaturas %}
+                <option>{{t}}º</option>
+              {% endfor %}
+            </select>
+            <p><input type="submit" value="Filtrar"></p>
+          </form>
+        </div>
+        {% if temperatura != "" %}
+          <h2>Municipios con temperatura maxima inferior a {{temperatura}}º.</h2></br>
+          <div id = "municipios">
+            {% for municipio in municipios %}
+              {% if municipio.temp_max <= temperatura %}
+                <div id = "municipio">
+                  <li><b><a href="/municipios/{{municipio.p_id}}">
+                    {{municipio.name}}
+                  </a></b></li>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <h2>Lista de todos los municipios registrados.</h2></br>
+          <div id = "municipios">
+            {% for municipio in municipios %}
+              <div id = "municipio">
+                <li><b><a href="/municipios/{{municipio.p_id}}">
+                  {{municipio.name}}
+                </a></b><p>Numero de comentarios en este municipio: {{municipio.num_comentarios}}</p></li>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+{% endblock %}

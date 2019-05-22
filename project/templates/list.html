@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <div id = "lista">
+      <h2>Páginas de Usuarios</h2>
+      <ul>
+        </br>
+        {% for usuario in usuarios %}
+        <li><a href="{{usuario.name}}">
+          Página de {{usuario.name}}
+        </a></li></br>
+        {% endfor %}
+      </ul>
+    </div>
+{% endblock %}

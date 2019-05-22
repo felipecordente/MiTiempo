@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+          <div id = xml>
+            <a href="/?format=xml" target="_blank">
+              Obtener XML
+            </a>
+          </div>
+          <div id = "lista_users">
+            <h2>Páginas de Usuarios</h2>
+            <ul>
+              </br>
+              {% for usuario in usuarios %}
+              <li><a href="{{usuario.name}}">
+                {{usuario.name}}: {{usuario.titulo_pagina}}.
+              </a></li></br>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="content-box">
+            <div id = "filtro">
+              <form action="/" method="post">{% csrf_token %}
+                <p>Filtrado: {{filtrado}}<input type="hidden" name="estado" value="1"></p>
+                <p><input type="submit" value="Cambiar filtrado."></p>
+              </form>
+            </div>
+            <div id = "municipios">
+            {% for municipio in municipios %}
+              {% if estado == 0 and municipio.prob_lluvia > 0 %}
+                <div id = "municipio">
+                  <b><a href="{{municipio.url_html}}" target="_blank">
+                    {{municipio.name}}
+                  </a></b></br>
+                  <p>Altitud: {{municipio.altitud}}m</p>
+                  <p>Longitud: {{municipio.longitud}}</p>
+                  <p>Latitud: {{municipio.latitud}}</p>
+                  <p>Temperatura mínima: {{municipio.temp_min}}</p>
+                  <p>Temperatura máxima: {{municipio.temp_max}}</p>
+                  <p>Probabilidad de lluvia: {{municipio.prob_lluvia}}%</p>
+                  <p>Descripción: {{municipio.descripcion}}</p>
+                  <p>Número de comentarios: {{municipio.num_comentarios}}</p>
+                  <div id= "acceso_municipio">
+                    <a href="/municipios/{{municipio.p_id}}">
+                      Más Información.
+                    </a>
+                  </div>
+                  </br>
+                </div>
+              {% endif %}
+              {% if estado == 1 and municipio.prob_lluvia == 0 %}
+                <div id = "municipio">
+                  <b><a href="{{municipio.url_html}}" target="_blank">
+                    {{municipio.name}}
+                  </a></b></br>
+                  <p>Altitud: {{municipio.altitud}}m</p>
+                  <p>Longitud: {{municipio.longitud}}</p>
+                  <p>Latitud: {{municipio.latitud}}</p>
+                  <p>Temperatura mínima: {{municipio.temp_min}}</p>
+                  <p>Temperatura máxima: {{municipio.temp_max}}</p>
+                  <p>Probabilidad de lluvia: {{municipio.prob_lluvia}}%</p>
+                  <p>Descripción: {{municipio.descripcion}}</p>
+                  <p>Número de comentarios: {{municipio.num_comentarios}}</p>
+                  <div id= "acceso_municipio">
+                    <a href="/municipios/{{municipio.p_id}}">
+                      Más Información.
+                    </a>
+                  </div>
+                  </br>
+                </div>
+              {% endif %}
+              {% if estado == 2 and municipio != 0 %}
+                <div id = "municipio">
+                  <b><a href="{{municipio.url_html}}" target="_blank">
+                    {{municipio.name}}
+                  </a></b></br>
+                  <p>Altitud: {{municipio.altitud}}m</p>
+                  <p>Longitud: {{municipio.longitud}}</p>
+                  <p>Latitud: {{municipio.latitud}}</p>
+                  <p>Temperatura mínima: {{municipio.temp_min}}</p>
+                  <p>Temperatura máxima: {{municipio.temp_max}}</p>
+                  <p>Probabilidad de lluvia: {{municipio.prob_lluvia}}%</p>
+                  <p>Descripción: {{municipio.descripcion}}</p>
+                  <p>Número de comentarios: {{municipio.num_comentarios}}</p>
+                  <div id= "acceso_municipio">
+                    <a href="/municipios/{{municipio.p_id}}">
+                      Más Información.
+                    </a>
+                  </div>
+                  </br>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          </div>
+{% endblock %}

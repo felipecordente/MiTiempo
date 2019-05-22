@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+            <div id = "municipio">
+              <b><a href="{{municipio.url_html}}" target="_blank">
+                {{municipio.name}}
+              </a></b></br>
+              <p>Altitud: {{municipio.altitud}}m</p>
+              <p>Longitud: {{municipio.longitud}}</p>
+              <p>Latitud: {{municipio.latitud}}</p>
+              <p>Temperatura mínima: {{municipio.temp_min}}</p>
+              <p>Temperatura máxima: {{municipio.temp_max}}</p>
+              <p>Probabilidad de lluvia: {{municipio.prob_lluvia}}%</p>
+              <p>Descripción: {{municipio.descripcion}}</p>
+              <p>Número de comentarios: {{municipio.num_comentarios}}</p>
+              {% if loggin %}
+                <form action="/municipios/{{municipio.p_id}}" method="post">{% csrf_token %}
+                  <p>Comentario: <textarea name="comentario" rows="2" cols="50" maxlength="1000"></textarea></p>
+                  <p><input type="submit" value="Enviar Nuevo Comentario"></p>
+                </form>
+              {% endif %}
+              <div id = comentarios>
+                {% if  municipio.num_comentarios == 0 %}
+                  <h2>No hay comentarios sobre este municipio.</h2>
+                {% else %}
+                  <b><h2>Comentarios:</h2></b>
+                  {% for comentario in comentarios %}
+                    <p>{{comentario.usuario.name}}: {{comentario.texto}}</p>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+        <div id = xml>
+          <a href="/{{name}}?format=xml" target="_blank">
+            Obtener XML
+          </a>
+        </div>
+        <h2>Título: {{titulo_pagina}}</h2></br>
+      {% if name == nombre_usuario %}
+        <div id = "forms_usuario">
+          <b><p>{{contenido}}</p></b>
+          <form action="/{{nombre_usuario}}" method="post">{% csrf_token %}
+            <p>Cambiar título página: <input type="text" name="titulo" size="30" maxlength="100" value="{{titulo_pagina}}"></p>
+            <p><input type="submit" value="Enviar"></p>
+          </form>
+          </br>
+          <form action="/{{nombre_usuario}}" method="post">{% csrf_token %}
+            <p>Añadir Municipio: <input type="text" name="municipio" size="10" maxlength="30"></p>
+            <p><input type="submit" value="Enviar"></p>
+          </form>
+          </br>
+          <h3>Cambiar estilo de css:</h3>
+          <form action="/{{nombre_usuario}}" method="post">{% csrf_token %}
+            <p>Cambiar color de fondo: </br>
+              <input type="radio" name="color_fondo" value="">Original</br>
+              <input type="radio" name="color_fondo" value="blue">Azul</br>
+              <input type="radio" name="color_fondo" value="gray">Gris</br>
+              <input type="radio" name="color_fondo" value="black">Negro</br>
+            <p><input type="submit" value="Enviar"></p>
+          </form>
+          <form action="/{{nombre_usuario}}" method="post">{% csrf_token %}
+            <p>Cambiar color de letra: </br>
+              <input type="radio" name="color_letra" value="">Original</br>
+              <input type="radio" name="color_letra" value="blue">Azul</br>
+              <input type="radio" name="color_letra" value="green">Verde</br>
+              <input type="radio" name="color_letra" value="white">Blanco</br>
+            <p><input type="submit" value="Enviar"></p>
+          </form>
+          <form action="/{{nombre_usuario}}" method="post">{% csrf_token %}
+            <p>Cambiar tamaño de letra: </br>
+              <input type="radio" name="tamaño" value="10">Pequeña</br>
+              <input type="radio" name="tamaño" value="15">Mediana</br>
+              <input type="radio" name="tamaño" value="20">Grande</br>
+            <p><input type="submit" value="Enviar"></p>
+          </form>
+        </div>
+      {% endif %}
+
+        <div id = "content_usuario">
+          {% for municipio in municipios %}
+            <div id = "municipio">
+              <b><a href="{{municipio.url_html}}" target="_blank">
+                {{municipio.name}}
+              </a></b></br>
+              <p>Altitud: {{municipio.altitud}}m</p>
+              <p>Longitud: {{municipio.longitud}}</p>
+              <p>Latitud: {{municipio.latitud}}</p>
+              <p>Temperatura mínima: {{municipio.temp_min}}</p>
+              <p>Temperatura máxima: {{municipio.temp_max}}</p>
+              <p>Probabilidad de lluvia: {{municipio.prob_lluvia}}%</p>
+              <p>Descripción: {{municipio.descripcion}}</p>
+              <p>Número de comentarios: {{municipio.num_comentarios}}</p>
+              <div id= "acceso_municipio">
+                <a href="/municipios/{{municipio.p_id}}">
+                  Acceso a la página del municipio, dentro de la app.
+                </a>
+              </div>
+              </br>
+              {% if name == nombre_usuario %}
+                <form action="/{{nombre_usuario}}" method="post">{% csrf_token %}
+                  <p><input type="hidden" name="eliminar" value="{{municipio.name}}"></p>
+                  <p><input type="submit" value="Eliminar Municipio de mi página"></p>
+                </form>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+{% endblock %}
