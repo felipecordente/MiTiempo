@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+            <p>{{info}}</p>
+            {% if not loggin %}
+              <form action="/registrar_usuario" method="post">{% csrf_token %}
+                <p>Nombre Usuario: <input type="text" name="new_user" size="10" maxlength="30"></p>
+                <p>Password: <input type="text" name="password" size="10" maxlength="10"></p>
+                <p><input type="submit" value="Registrarse"></p>
+              </form>
+            {% else %}
+              <p>{{contenido}}</p>
+
+            {% endif %}
+{% endblock %}

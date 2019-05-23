@@ -2,13 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from . import leer_json, leer_xml
 from django.template import loader
-from .models import Pueblo, Usuario, Comentario
+from .models import Pueblo, Usuario, Comentario, Estado
 import random, string
 from django.utils.datastructures import MultiValueDictKeyError
 import copy
 
 diccionario = leer_json.main()
-estado = 0
 # Create your views here.
 def control_login(request, cambiar_estado = False):
     contenido = ""
@@ -93,6 +92,35 @@ def ordenar_municipios(municipios):
 
     return array_final
 
+def pagina_registro(request):
+    _, loggin, name, contenido = control_login(request)
+
+    info = ""
+    cookie = ""
+    if request.method == "POST":
+        name = request.POST['new_user']
+        password = request.POST['password']
+        try:
+            Usuario.objects.get(name = name)
+            info = "Este nombre ya ha sido utilizado, pruebe con otro."
+        except Usuario.DoesNotExist:
+            titulo_pagina = "Pagina de " + name
+            cookie = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(20))
+            u = Usuario(name = name, password = password, titulo_pagina = titulo_pagina,
+                        cookie = cookie)
+            u.save()
+            loggin = True
+    if loggin:
+        contenido = "Ya estas registrado, si quieres crear otra cuenta, deslogueate antes."
+    template = loader.get_template('pagina_registro.html')
+    html = template.render({'contenido':contenido, 'loggin':loggin,
+                            'nombre_usuario':name,'info':info}, request)
+    response = (HttpResponse(html))
+    if cookie != "":
+        print("le mandamos la cookie")
+        response.set_cookie('cookie', cookie)
+    return(response)
+
 def pagina_principal(request):
     format = request.GET.get('format')
     if format == "xml":
@@ -110,10 +138,25 @@ def pagina_principal(request):
     cookie, loggin, name, contenido = control_login(request,cambiar_estado)
 
     if request.method == "GET" or cambiar_estado:
-        global estado
+        try:
+            cookie_navegador = request.COOKIES['cookie_navegador']
+            estado = Estado.objects.get(cookie_navegador = cookie_navegador).estado
+
+        except KeyError:
+            cookie_navegador = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(20))
+            Estado(cookie_navegador = cookie_navegador).save()
+            estado = 0
+        except Estado.DoesNotExist:
+            cookie_navegador = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(20))
+            Estado(cookie_navegador = cookie_navegador).save()
+            estado = 0
+
         municipios = Pueblo.objects.all()
         if cambiar_estado:
             estado = (estado + 1) % 3
+            x = Estado.objects.get(cookie_navegador = cookie_navegador)
+            x.estado = estado
+            x.save()
         if estado == 0:
             filtrado = "Probabilidad de lluvia mayor a 0%"
         if estado == 1:
@@ -132,6 +175,7 @@ def pagina_principal(request):
                                 'nombre_usuario':name}, request)
 
         response = (HttpResponse(html))
+        response.set_cookie('cookie_navegador', cookie_navegador)
     else:
         template = loader.get_template('base.html')
         html = template.render({'contenido':contenido, 'loggin':loggin,

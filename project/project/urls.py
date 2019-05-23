@@ -23,6 +23,7 @@ urlpatterns = [
     path('info', views.pagina_info),
     path('municipios', views.pagina_municipios),
     path('users', views.pagina_users),
+    path('registrar_usuario', views.pagina_registro),
     path('<str:nombre>', views.pagina_usuario),
     path('municipios/<str:id>', views.pagina_municipio),
     path('css/main.css', views.servir_css),

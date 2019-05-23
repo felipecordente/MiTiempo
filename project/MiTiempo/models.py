@@ -38,3 +38,7 @@ class Comentario(models.Model):
 
     def  __str__(self):
         return self.texto
+
+class Estado(models.Model):
+    cookie_navegador = models.CharField(max_length = 20)
+    estado = models.IntegerField(default = 0)

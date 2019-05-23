@@ -3,11 +3,26 @@
 {% block contenido %}
     <div id = "info">
       <h1>Información sobre el desarrollo de la página</h1>
-      <p>Autor: FELIPE CORDENTE ROMERO</p></br>
-      <h2>Recursos utilizados en la página</h2>
-      <p>Utilización de css, para maquetación de la página.</p>
+      </br>
+      <ins><h2>Info Alumno</h2></ins>
+      <p>Autor: FELIPE CORDENTE ROMERO</p>
+      <p>Titulación: Tecnologías de la Telecomunicación</p>
+      <p>Nombre de cuenta en el laboratorio: felipe</p>
+      </br>
+      <ins><h2>Peculiaridades de la páctica.</h2></ins>
+      <p>La gestión de cookies de sesión, esta implementada manualmente,
+         tanto el POST para logearse como para desloguearse, se mandarán a la página principal.</p>
+      <ins><h2>Las opcionales añadidas a la páctica son:</h2></ins>
+        <li>Inclusión del favicon en el sitio, este es una imagen estática, simplemente hago referencia a ella en el html de la página</li>
+        <li>Nueva página donde los usuarios nuevos se pueden registar, esta página controla que el nombre de usuario no se repita y en el caso de que ya estemos logueados en la página no nos deja crear otra cuenta.</li>
+        <li>Uso de html5, por ejemplo los elementos de header y footer, dentro del body de la página(parta indicar el principio y el final de la página), o como por ejemplo ims(subrayado), etc.</li>
+        <li>Despliegue de la práctica en <a href="http://pythonanywhere.com" target="blank">pythonanywhere.com</a></li>
+      <ins><h2>Uuarios dados de alta en la aplicacion:</h2></ins>
+        <li>Nombre:felipe;  Contraseña:felipe</li>
+        <li>Nombre:luis;  Contraseña:luis</li>
+      <ins><h2>Url de la app desplegada:</h2></ins>
+      <a href="http://felipecordente.pythonanywhere.com" target="blank">Página desplegada</a>
+      </br></br>
     </div>
-
-    {{noticias|safe}}
 
 {% endblock %}
